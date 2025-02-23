@@ -1,10 +1,11 @@
 'use client';
 import { Progress } from "@/components/ui/progress"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
+import { Card} from "@/components/ui/card"
 import { LineChart } from "@/components/LineChart";
 import { PieChartDonutText } from "@/components/ui/pie-chart-donut-text";
-import { Plus, DownloadIcon, Calendar, FilterIcon, Download, Filter, Grid, AlertTriangle, CheckCircle, RefreshCcw, Users } from "lucide-react"
+import { Plus, Calendar, Download, Filter, Grid, AlertTriangle, CheckCircle, RefreshCcw, Users } from "lucide-react"
 import TeamMoods from "@/components/TeamMoods"
+import BudgetStatus from "@/components/BudgetStatus"
 import {
   Avatar,
   AvatarFallback,
@@ -12,7 +13,7 @@ import {
 } from "@/components/ui/avatar"
 
 import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider";
+
 
 
 
@@ -105,7 +106,7 @@ export default function Home() {
         {/* charts */}
         <div className="grid grid-cols-1 md:grid-cols-[auto,35%,15%] gap-2">
           {/* Column 1 */}
-          <div className="bg-gray-100 p-0 rounded shadow grid  ">
+          <div className=" p-0 rounded shadow grid  ">
             {/* Row 1 */}
             {/* Stats Section */}
             <div className="grid grid-cols-3 gap-4  m-2 h-min">
@@ -148,7 +149,7 @@ export default function Home() {
           </div>
 
           {/* Column 2 */}
-          <div className="bg-gray-100 p-0 rounded shadow  h-full">
+          <div className="] p-0 rounded shadow  h-full">
             {/* Row 1 */}
             <div className="grid grid-cols-2 gap-4  m-2 h-min">
 
@@ -209,70 +210,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {projects.map((project, index) => (
-                <Card key={index} className="p-6">
-                  <div className="mb-4 flex items-center justify-between">
-                    <div>
-                      <h3 className="font-medium">{project.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {project.client}
-                      </p>
-                    </div>
-                    <Avatar>
-                      <AvatarImage
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-                        alt={project.client}
-                      />
-                      <AvatarFallback>
-                        {project.client.substring(0, 2).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span>Total Budget</span>
-                      <span className="font-medium">
-                        {project.budget.toLocaleString()}€
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span>Profitability (100%)</span>
-                      <span
-                        className={
-                          project.profitability < 0
-                            ? "text-destructive"
-                            : "text-primary"
-                        }
-                      >
-                        {project.profitability.toLocaleString()}€
-                      </span>
-                    </div>
-                    
-                    
-                  </div>
-
-
-                  <div className="mt-3 ">
-                  {/* <span className="right-0 w-90 text-red-600  w-full"><AlertTriangle/></span> */}
-                    <Progress
-                      value={(project.hours.actual / project.hours.sold) * 100}
-                      barColour={project.remaining_shade}
-                      strokeColour={project.completed_shade}
-                      
-
-                    />
-                    <div className="mt-2 flex justify-between text-sm">
-                      <span>
-                        Actual hours: {project.hours.actual.toLocaleString()}
-                      </span>
-                      <span>{project.hours.sold.toLocaleString()} sold hours</span>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <BudgetStatus projects={projects}/>
           </div>
         </section>
       </div >
