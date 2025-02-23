@@ -1,13 +1,5 @@
 # dashboard
  Project Manager's Dashboard
-## Installation
-
-Install my-project with npm
-
-```bash
-  npm install my-project --legacy-peer-deps
-  cd my-project
-```
     
 ## Run Locally
 
@@ -26,7 +18,7 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm install
+  npm install --legacy-peer-deps
 ```
 
 Start the server
